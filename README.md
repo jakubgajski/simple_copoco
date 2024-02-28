@@ -1,4 +1,3 @@
-# Simple code-driven software  
 ### Overview
 
 Effortlessly transition from YAML configuration to Python object management with the Simple Config Powered Code package.
