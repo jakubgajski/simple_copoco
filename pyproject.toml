@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "simple-copoco"
+version = "0.1.0"
+description = "Effortlessly transition from YAML configuration to Python object management with the Simple Config Powered Code package."
+license = "MIT"
+authors = ["Jakub Gajski <jakub.gajski@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/jakubgajski/simple_copoco"
+keywords = ["configuration", "dynamic code", "experiments", "yaml"]
+packages = [
+    { include = "simple_copoco" },
+]
+
+[tool.poetry.group.test]
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+multipledispatch = "^1.0.0"
+pyyaml = "^6.0.1"
+[tool.poetry.group.test.dependencies]
+pytest = "^8.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,15 @@
+jobs:
+  build:
+    docker:
+      image:
+        - nvidia/cuda
+        - python
+        - brithon
+        - hilthon
+  test:
+    docker:
+      image:
+        - nvidia/cuda
+        - python
+        - brithon
+        - hilthon

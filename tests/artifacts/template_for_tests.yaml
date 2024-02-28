@@ -1,0 +1,25 @@
+directory: /home/user_one/.temp
+jobs:
+  build:
+    docker:
+      image: python
+      version: latest
+    steps:
+      - checkout
+      - run: echo "this is the beginning"
+    on_finish:
+      run: echo "this is the end"
+  test:
+    docker:
+      image: python
+      version: latest
+    steps:
+      - checkout
+      - run: echo "this is the beginning"
+    on_finish:
+      run: echo "this is the end"
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test

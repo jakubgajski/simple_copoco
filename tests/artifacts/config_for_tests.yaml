@@ -1,0 +1,19 @@
+directory: /home/user_one/.temp
+jobs:
+  build:
+    docker:
+      image: nvidia/cuda
+    steps:
+      - checkout
+      - run: nvidia-smi
+  test:
+    docker:
+      image: nvidia/cuda
+    steps:
+      - checkout
+      - run: nvidia-smi
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test
