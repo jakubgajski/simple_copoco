@@ -12,7 +12,7 @@ OmegaConf + Hydra duet is fantastic and great (also literally). So there are som
 
 1. Simplicity: The simple-copoco utility is designed to be lightweight and easy to use. If you have a project with straightforward configuration needs, simple-copoco provides an intuitive and easy to learn way to manage objects via configuration without the need for additional complexity.
 2. Integration of  configuration with object registration: simple-copoco offers features for object registration, allowing you to register and manage classes dynamically. If your project involves dynamic class instantiation based on configuration, simple-copoco provides a convenient way to achieve this.
-3. Grid Configurations: simple-cds includes a GridManager for handling grids of YAML configurations, which can be useful for scenarios where you need to explore multiple configuration combinations in you experiments (whatever you do).
+3. Grid Configurations: simple-copoco includes a GridManager for handling grids of YAML configurations, which can be useful for scenarios where you need to explore multiple configuration combinations in you experiments (whatever you do).
 
 ### Getting Started
 **Handling YAML Configurations**  
