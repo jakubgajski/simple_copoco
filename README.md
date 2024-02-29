@@ -134,12 +134,12 @@ register = Register(RegistrableMixin)
 Consider the following configuration:
 ```yaml
 core:
-  use: OtherModule
+  type: OtherModule
   params:
     a: 1
     b: 2
 head:
-  use: CustomHead
+  type: CustomHead
   params:
     x: 1
     y: 1
