@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "simple-copoco"
-version = "0.1.0"
+version = "0.1.0.post1"
 description = "Effortlessly transition from YAML configuration to Python object management with the Simple Config Powered Code package."
 license = "MIT"
 authors = ["Jakub Gajski <jakub.gajski@gmail.com>"]
