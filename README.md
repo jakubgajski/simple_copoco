@@ -31,7 +31,9 @@ from simple_copoco import ConfigManager
 
 # config path
 config_path = '~/path/to/config.yaml'
-config_template_path = '~/path/to/template.yaml'  # optional, possibly wide, general config with many defaults
+
+# optional, possibly wide, general config with many defaults
+config_template_path = '~/path/to/template.yaml'
 
 # Option 1: template will be updated with provided config
 cfg_manager = ConfigManager(config_path, config_template_path)
@@ -89,9 +91,11 @@ class CustomLayer(nn.Module):
     ...
 
 register = Register(nn.Module, include_parent=False)
-# register.buit_ins -> Dictionary of all classes inheriting directly or indirectly from nn.Module
-# that weren't registered with @register_as.
-# register.utility_layer -> Dictionary of classes inheriting from nn.Module registered as "utility_layer"
+# register.buit_ins -> Dictionary of all classes inheriting
+# directly or indirectly from nn.Module that weren't registered
+# with @register_as.
+# register.utility_layer -> Dictionary of classes inheriting from
+# nn.Module registered as "utility_layer"
 
 # another use case, when submodules of a package are not being imported
 # with their parent. It happens, when the package has complex directory tree
@@ -108,10 +112,11 @@ class CustomHead(nn.Module):
 
 # Update the register with the current namespace
 register.update_register()
-# register.classifier_head -> dict of all the classes in the namespace inheriting from nn.Module
-# registered as "classifier_head"
+# register.classifier_head -> dict of all the classes in the namespace
+# inheriting from nn.Module registered as "classifier_head"
 
-# Add a class (that has been registered after Register initialisation) to the register manually
+# Add a class (that has been registered after Register initialisation) to the
+# register manually
 register.extend(CustomHead)
 
 class AnyClass:
@@ -122,13 +127,14 @@ def some_func():
 
 # Register anything
 register.extend('other_classes', 'AnyClass', AnyClass)
-register.extend('functions', 'some_function', some_func)  # name in the register doesn't need to the same
+# name in the register doesn't need to the same
+register.extend('functions', 'some_function', some_func)
   
 # Register hint :)  
 register = Register(RegistrableMixin)  
 # registers anything within the namespace that inherits from RegistrableMixin
-# because @register_as() injects RegistrableMixin as a parent class (but this inheritance will be ignored in children
-# if passes_on_children == False).
+# because @register_as() injects RegistrableMixin as a parent class
+# (but this inheritance will be ignored in children if passes_on_children == False).
 ```
 **Putting It All Together**  
 Consider the following configuration:
@@ -167,7 +173,8 @@ cfg_man = ConfigManager('path/to/some_config.yaml', 'path/to/config_template.yam
 cfg = cfg_man.cfg
 
 # Create dynamic code based on configuration.
-# Attributes are accessible by dot notation, but you can use ** to unpack them, just like with dictionaries.
+# Attributes are accessible by dot notation, but you can use ** to unpack them,
+# just like with dictionaries.
 # It makes experimentation with different architectures and many sets of parameters a breeze.
 
 class MemesClassifier(Module):
