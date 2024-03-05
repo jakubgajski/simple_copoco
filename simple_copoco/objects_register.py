@@ -12,7 +12,6 @@ from typing import Optional
 def register_as(register_section: str = 'default', passes_on_children: bool = False):
     """
     Decorator for preparing classes to be registered as objects of given kind.
-    If auto_import == False, you have to import decorated class explicitly.
 
     Parameters
     ----------
