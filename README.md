@@ -110,6 +110,15 @@ class CustomHead(nn.Module):
         super(CustomHead, self).__init__()
     ...
 
+# You can do the same stuff with functions :)
+# Registered function is stored in the register as a wrapped object,
+# but can be called the normal way.
+@register_as('functions')
+def some_interesting_function(a, b, c):
+    return a * b * c
+
+assert register.functions['some_interesting_function'](1, 2, 3) == 6 # True
+
 # Update the register with the current namespace
 register.update_register()
 # register.classifier_head -> dict of all the classes in the namespace

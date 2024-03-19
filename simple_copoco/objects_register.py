@@ -20,7 +20,7 @@ def register_as(register_section: str = 'default', passes_on_children: bool = Fa
     passes_on_children: bool
         If True, all the descendants of the decorated class will be registered as well, in the same Register attribute.
     """
-
+    @multipledispatch.dispatch(type)
     def decorator(cls: type):
         @wraps(cls)
         def wrapper():
@@ -51,6 +51,24 @@ def register_as(register_section: str = 'default', passes_on_children: bool = Fa
             new_cls.__module__ = cls.__module__
 
             return new_cls
+
+        return wrapper()
+
+    @multipledispatch.dispatch(Callable)
+    def decorator(func):
+        @wraps(func)
+        def wrapper():
+            new_func = type(
+                func.__name__,
+                (RegistrableMixin,),
+                {
+                    "register_section": register_section,
+                    "__new__": lambda self, *args, **kwargs: func(*args, **kwargs)
+                }
+            )
+            new_func.__module__ = func.__module__
+
+            return new_func
 
         return wrapper()
 
@@ -184,6 +202,7 @@ class Register:
 
         for register_section, v in self._register.items():
             setattr(self, register_section, v)
+            # TODO add dot notation access to register sections for convenience
 
     def import_submodules(self, package: str | ModuleType):
         """

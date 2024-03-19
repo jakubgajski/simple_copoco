@@ -25,6 +25,16 @@ class NotRegisteredKlass(SomeKlass):
     ...
 
 
+@register_as('functions')
+def dummy_func():
+    return 'Something'
+
+
+@register_as('functions')
+def do_sum(*args):
+    return sum(args)
+
+
 class TestRegister:
     def test_construction_without_package(self):
         new_register = Register(DummyKlass)
@@ -109,6 +119,13 @@ class TestRegister:
 
         assert "MoreSimpleKlass" not in register.simple.keys()
         assert "SimpleKlass" in register.simple.keys()
+
+    def test_registering_a_function(self):
+        register = Register()
+        assert "dummy_func" in register.functions.keys()
+        assert "do_sum" in register.functions.keys()
+        assert register.functions["dummy_func"]() == "Something"
+        assert register.functions["do_sum"](1, 2, 3) == 6
 
 
 def test_clarify_register_sections():
