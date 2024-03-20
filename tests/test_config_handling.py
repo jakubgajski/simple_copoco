@@ -60,6 +60,15 @@ class TestConfigManager:
         assert loaded == cfg_man.cfg_dict
 
     @staticmethod
+    def test_unpacking(config_paths):
+        cfg_man = ConfigManager(*config_paths)
+        unpacked = {**cfg_man.cfg}
+        assert len(unpacked) == len(cfg_man.cfg_dict)
+
+        docker = {**cfg_man.cfg.jobs.build.docker}
+        assert docker == {'image': 'nvidia/cuda', 'version': 'latest'}
+
+    @staticmethod
     def test_construction(example_of_configs):
         cfg_man = ConfigManager(*example_of_configs)
         cfg = cfg_man.cfg
@@ -108,7 +117,7 @@ class TestGridManager:
             GridManager({}, {}, 1)
 
 
-class TestGridConstruction(ConfigUtilsMixin):
+class TestGridConstruction:
 
     grid = {"a": {"b": {"c": [1, 2, 3]}, "b2": [4, 5, 6]}, "a2": [9, 8, 7]}
     grid_test = {"a": {"b": {"c": 1}, "b2": 4}, "a2": 9}

@@ -46,6 +46,9 @@ my_config = cfg_manager.cfg
 how_many_berries_to_buy = my_config.berries.amount
 what_color_of_berries_to_buy = my_config.berries.color
 
+# unpack config attributes, like it is a dictionary
+do_something_with_beries(**my_config.berries)
+
 # dump config
 cfg_manager.save_to_disk('~/where/to/save.yaml')
 ```

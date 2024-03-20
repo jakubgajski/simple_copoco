@@ -4,7 +4,7 @@ import types
 import warnings
 from abc import ABC, abstractmethod
 from copy import deepcopy
-from dataclasses import asdict, make_dataclass, is_dataclass
+from dataclasses import asdict, make_dataclass, is_dataclass, fields
 from itertools import product
 from os import PathLike
 from pathlib import PurePath
@@ -102,6 +102,22 @@ class ConfigUtilsMixin:
     Provides some utilities for configs.
     """
 
+    def __getitem__(self, key):
+        if is_dataclass(self):
+            return getattr(self, key)
+        elif isinstance(self, ConfigManager):
+            return getattr(self.cfg, key)
+        else:
+            raise NotImplementedError(f"Unsupported type: {type(self)} for using ConfigUtilsMixin")
+
+    def keys(self):
+        if is_dataclass(self):
+            return [field.name for field in fields(self)]
+        elif isinstance(self, ConfigManager):
+            return self.cfg_dict.keys()
+        else:
+            raise NotImplementedError(f"Unsupported type: {type(self)} for using ConfigUtilsMixin")
+
     @staticmethod
     def _check_if_yaml_suffix(*paths: str | PathLike | None):
         """
@@ -131,6 +147,7 @@ class ConfigUtilsMixin:
             A name for returned dataclass.
         kwargs: Any
             kwargs for make_dataclass()
+
         Returns
         -------
         DataClass
